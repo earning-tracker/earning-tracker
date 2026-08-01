@@ -53,15 +53,6 @@ interface AnnouncementData {
   message: string;
 }
 
-interface ConfigData {
-  versionCode: number;
-  versionName: string;
-  apkUrl: string;
-  forceUpdate: boolean;
-  title: string;
-  message: string;
-}
-
 export default function App() {
   // STATE MANAGEMENT
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -90,9 +81,6 @@ export default function App() {
   // Announcement & Config API States
   const [announcement, setAnnouncement] = useState<AnnouncementData | null>(null);
   const [showAnnouncementBanner, setShowAnnouncementBanner] = useState<boolean>(true);
-  const [config, setConfig] = useState<ConfigData | null>(null);
-  const [isConfigLoading, setIsConfigLoading] = useState<boolean>(true);
-
   const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // DATE UTILITY FUNCTIONS
@@ -306,31 +294,6 @@ export default function App() {
     }
   }, []);
 
-  // FETCH CONFIG API
-  const fetchConfig = useCallback(async () => {
-    setIsConfigLoading(true);
-    try {
-      const url = `${APPS_SCRIPT_URL}?type=config`;
-      const res = await fetch(url);
-      if (res.ok) {
-        const data = await res.json();
-        if (data) {
-          setConfig({
-            versionCode: Number(data.versionCode || 1),
-            versionName: String(data.versionName || '1.0.0'),
-            apkUrl: String(data.apkUrl || ''),
-            forceUpdate: Boolean(data.forceUpdate),
-            title: String(data.title || 'App Update'),
-            message: String(data.message || 'Check for latest updates.')
-          });
-        }
-      }
-    } catch (e) {
-      console.warn('Config API note:', e);
-    } finally {
-      setIsConfigLoading(false);
-    }
-  }, []);
   // INITIAL LOAD
   useEffect(() => {
     // 1. Initial theme load
@@ -995,78 +958,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* 5. CONFIG API & APP VERSION SECTION CARD */}
-        <div className="rounded-3xl p-4 sm:p-5 bg-[var(--md-sys-color-surface-container)] border border-[var(--md-sys-color-outline-variant)]/60 shadow-sm flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Smartphone className="w-4 h-4 text-[var(--md-sys-color-primary)]" />
-              <span className="text-sm font-bold text-[var(--md-sys-color-on-surface)]">
-                App Version & Config
-              </span>
-            </div>
-            {isUpdateAvailable ? (
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--md-sys-color-warning-container)] text-[var(--md-sys-color-on-warning-container)] flex items-center gap-1">
-                <AlertTriangle className="w-3 h-3" />
-                Update Available
-              </span>
-            ) : (
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--md-sys-color-success-container)] text-[var(--md-sys-color-on-success-container)] flex items-center gap-1">
-                <Check className="w-3 h-3" />
-                Up to Date
-              </span>
-            )}
-          </div>
-
-          {isConfigLoading ? (
-            <div className="text-xs text-[var(--md-sys-color-on-surface-variant)] py-2 text-center animate-pulse">
-              Checking version details...
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2.5">
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="p-2.5 rounded-xl bg-[var(--md-sys-color-surface-container-high)] flex flex-col gap-0.5">
-                  <span className="text-[10px] uppercase font-bold text-[var(--md-sys-color-on-surface-variant)]">
-                    Current Version
-                  </span>
-                  <span className="font-bold text-[var(--md-sys-color-on-surface)]">
-                    v{CURRENT_APP_VERSION} ({CURRENT_VERSION_CODE})
-                  </span>
-                </div>
-                <div className="p-2.5 rounded-xl bg-[var(--md-sys-color-surface-container-high)] flex flex-col gap-0.5">
-                  <span className="text-[10px] uppercase font-bold text-[var(--md-sys-color-on-surface-variant)]">
-                    Latest Version
-                  </span>
-                  <span className="font-bold text-[var(--md-sys-color-on-surface)]">
-                    v{config?.versionName || CURRENT_APP_VERSION} ({config?.versionCode || CURRENT_VERSION_CODE})
-                  </span>
-                </div>
-              </div>
-
-              {config && (
-                <div className="p-3 rounded-2xl bg-[var(--md-sys-color-surface-container-lowest)] border border-[var(--md-sys-color-outline-variant)]/40 flex flex-col gap-1 text-xs">
-                  <span className="font-bold text-[var(--md-sys-color-on-surface)]">
-                    {config.title || 'Version Status'}
-                  </span>
-                  <p className="text-[var(--md-sys-color-on-surface-variant)] leading-relaxed">
-                    {config.message}
-                  </p>
-                </div>
-              )}
-
-              {config?.apkUrl && config.apkUrl.trim().length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => window.open(config.apkUrl, '_blank')}
-                  className="w-full h-10 rounded-2xl bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 active:scale-98 transition-all shadow-sm"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>Download Update APK</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+         
+        
 
         {/* 6. MONTHLY SUMMARY CARD */}
         <div className="rounded-3xl p-4 sm:p-5 bg-[var(--md-sys-color-surface-container-high)] border border-[var(--md-sys-color-outline-variant)]/60 shadow-sm flex flex-col gap-3">
