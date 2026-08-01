@@ -308,8 +308,7 @@ export default function App() {
     // 3. Fetch APIs in background
     fetchFromSheet({ isSilent: true });
     fetchAnnouncement();
-    fetchConfig();
-  }, [fetchAnnouncement, fetchConfig, fetchFromSheet, loadEntriesFromLocal]);
+  }, [fetchAnnouncement, fetchFromSheet, loadEntriesFromLocal]);
 
   // TODAY ENTRY GETTER
   const getTodayEntry = useCallback((): Entry | undefined => {
@@ -577,10 +576,7 @@ export default function App() {
   }
 
   const todayEntry = getTodayEntry();
-  const isUpdateAvailable =
-    config &&
-    (config.versionCode > CURRENT_VERSION_CODE ||
-      (config.apkUrl && config.apkUrl.trim().length > 0 && config.versionName !== CURRENT_APP_VERSION));
+
 
   return (
     <div className="w-full min-h-screen flex justify-center items-start px-3 sm:px-4 py-5 pb-16 transition-colors duration-200">
