@@ -1,0 +1,6 @@
+{
+  "name": "Earning Tracker",
+  "description": "Log work shifts, track earnings, view monthly analytics, and manage shift logs with Material 3 UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

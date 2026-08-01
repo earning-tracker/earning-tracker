@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Material 3 Color System - Light Theme */
+    --md-sys-color-primary: #0f6cbd;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #d8e2ff;
+    --md-sys-color-on-primary-container: #001a41;
+
+    --md-sys-color-secondary: #565e71;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #dbf0ff;
+    --md-sys-color-on-secondary-container: #001f37;
+
+    --md-sys-color-tertiary: #10806f;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #a3f2e2;
+    --md-sys-color-on-tertiary-container: #00201a;
+
+    --md-sys-color-surface: #f8f9ff;
+    --md-sys-color-on-surface: #191c20;
+    --md-sys-color-surface-variant: #e0e2ec;
+    --md-sys-color-on-surface-variant: #43474e;
+
+    --md-sys-color-surface-container-lowest: #ffffff;
+    --md-sys-color-surface-container-low: #f2f3fa;
+    --md-sys-color-surface-container: #eceef8;
+    --md-sys-color-surface-container-high: #e6e8f2;
+    --md-sys-color-surface-container-highest: #e0e2ec;
+
+    --md-sys-color-outline: #73777f;
+    --md-sys-color-outline-variant: #c3c6cf;
+
+    --md-sys-color-error: #ba1a1a;
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+    --md-sys-color-on-error-container: #410002;
+
+    --md-sys-color-success: #15803d;
+    --md-sys-color-success-container: #dcfce7;
+    --md-sys-color-on-success-container: #052e16;
+
+    --md-sys-color-warning: #b45309;
+    --md-sys-color-warning-container: #fef3c7;
+    --md-sys-color-on-warning-container: #451a03;
+
+    --md-sys-shape-corner-extra-small: 4px;
+    --md-sys-shape-corner-small: 8px;
+    --md-sys-shape-corner-medium: 12px;
+    --md-sys-shape-corner-large: 16px;
+    --md-sys-shape-corner-extra-large: 28px;
+    --md-sys-shape-corner-full: 9999px;
+  }
+
+  [data-theme="dark"] {
+    /* Material 3 Color System - Dark Theme */
+    --md-sys-color-primary: #a8c7ff;
+    --md-sys-color-on-primary: #003062;
+    --md-sys-color-primary-container: #004689;
+    --md-sys-color-on-primary-container: #d8e2ff;
+
+    --md-sys-color-secondary: #bec6dc;
+    --md-sys-color-on-secondary: #283042;
+    --md-sys-color-secondary-container: #004a75;
+    --md-sys-color-on-secondary-container: #dbf0ff;
+
+    --md-sys-color-tertiary: #87d6c6;
+    --md-sys-color-on-tertiary: #00372f;
+    --md-sys-color-tertiary-container: #005045;
+    --md-sys-color-on-tertiary-container: #a3f2e2;
+
+    --md-sys-color-surface: #111318;
+    --md-sys-color-on-surface: #e2e2e9;
+    --md-sys-color-surface-variant: #43474e;
+    --md-sys-color-on-surface-variant: #c3c6cf;
+
+    --md-sys-color-surface-container-lowest: #0c0e13;
+    --md-sys-color-surface-container-low: #191c20;
+    --md-sys-color-surface-container: #1d2024;
+    --md-sys-color-surface-container-high: #282a2f;
+    --md-sys-color-surface-container-highest: #33353a;
+
+    --md-sys-color-outline: #8d9199;
+    --md-sys-color-outline-variant: #43474e;
+
+    --md-sys-color-error: #ffb4ab;
+    --md-sys-color-on-error: #690005;
+    --md-sys-color-error-container: #93000a;
+    --md-sys-color-on-error-container: #ffdad6;
+
+    --md-sys-color-success: #86efac;
+    --md-sys-color-success-container: #14532d;
+    --md-sys-color-on-success-container: #dcfce7;
+
+    --md-sys-color-warning: #fde047;
+    --md-sys-color-warning-container: #713f12;
+    --md-sys-color-on-warning-container: #fef3c7;
+  }
+}
+
+body {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Material 3 Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-outline-variant);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--md-sys-color-outline);
+}
