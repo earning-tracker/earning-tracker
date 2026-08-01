@@ -958,7 +958,7 @@ export default function App() {
           </div>
         </div>
 
-      </div>
+      
         
 
         {/* 6. MONTHLY SUMMARY CARD */}
