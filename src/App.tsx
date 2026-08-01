@@ -306,6 +306,31 @@ export default function App() {
     }
   }, []);
 
+  // FETCH CONFIG API
+  const fetchConfig = useCallback(async () => {
+    setIsConfigLoading(true);
+    try {
+      const url = `${APPS_SCRIPT_URL}?type=config`;
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        if (data) {
+          setConfig({
+            versionCode: Number(data.versionCode || 1),
+            versionName: String(data.versionName || '1.0.0'),
+            apkUrl: String(data.apkUrl || ''),
+            forceUpdate: Boolean(data.forceUpdate),
+            title: String(data.title || 'App Update'),
+            message: String(data.message || 'Check for latest updates.')
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('Config API note:', e);
+    } finally {
+      setIsConfigLoading(false);
+    }
+  }, []);
   // INITIAL LOAD
   useEffect(() => {
     // 1. Initial theme load
