@@ -730,31 +730,6 @@ export default function App() {
           </div>
         )}
 
-        {/* FORCE UPDATE BANNER (If config.forceUpdate is true) */}
-        {config && config.forceUpdate && (
-          <div className="rounded-3xl p-4 bg-[var(--md-sys-color-error-container)] text-[var(--md-sys-color-on-error-container)] border border-[var(--md-sys-color-error)]/30 shadow-md">
-            <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-2xl bg-[var(--md-sys-color-error)] text-[var(--md-sys-color-on-error)] flex items-center justify-center flex-shrink-0">
-                <ShieldAlert className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-bold">{config.title || 'Action Required: Force Update'}</h3>
-                <p className="text-xs mt-1 leading-relaxed opacity-90">{config.message}</p>
-                {config.apkUrl && (
-                  <button
-                    type="button"
-                    onClick={() => window.open(config.apkUrl, '_blank')}
-                    className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-[var(--md-sys-color-error)] text-[var(--md-sys-color-on-error)] hover:opacity-90 active:scale-95 transition-all"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Update Now ({config.versionName || 'Latest'})</span>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* 2. PRIMARY MONTHLY ANALYTICS DASHBOARD CARD */}
         <div
           id="analyticsCard"
